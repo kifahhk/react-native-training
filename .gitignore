@@ -15,3 +15,7 @@ web-report/
 
 
 .idea/*
+
+# firebase config
+api/index.js
+
