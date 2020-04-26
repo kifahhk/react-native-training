@@ -1,20 +1,26 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import { View, Platform, StyleSheet, TouchableOpacity } from 'react-native';
-import { ThemeProvider, Text, Badge } from 'react-native-elements';
-import { ScrollView } from 'react-native-gesture-handler';
+import { View, Platform, StyleSheet } from 'react-native';
+import { ThemeProvider, Text, Badge, Button } from 'react-native-elements';
+import { mockTodos } from '../api/mockTodos';
+import TodoList from '../components/todo-list';
 
 
 export default function HomeScreen() {
+  const handleHelpPress = () => {
+    WebBrowser.openBrowserAsync(
+      'https://kifahseif.de'
+    );
+  };
+
   return (
     <View style={styles.container}>
-      {/*<ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>*/}
-      {/*  <Text>Hi Kifah</Text>*/}
-      {/*</ScrollView>*/}
       <ThemeProvider>
         <Text h1>Headline</Text>
+        <TodoList list={mockTodos} />
         <Badge value='Hola' badgeStyle={styles.badgeContainer} />
       </ThemeProvider>
+      <Button onPress={handleHelpPress}>Kifah</Button>
     </View>
   );
 }
@@ -22,14 +28,6 @@ export default function HomeScreen() {
 HomeScreen.navigationOptions = {
   header: null,
 };
-
-
-
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change'
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
