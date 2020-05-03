@@ -14,7 +14,7 @@ web-report/
 .DS_Store
 
 
-.idea/*
+.idea/
 
 # firebase config
 api/index.js

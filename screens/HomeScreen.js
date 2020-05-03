@@ -2,8 +2,7 @@ import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import { View, Platform, StyleSheet } from 'react-native';
 import { ThemeProvider, Text, Badge, Button } from 'react-native-elements';
-import { mockTodos } from '../api/mockTodos';
-import TodoList from '../components/todo-list';
+import HomePage from '../components/home';
 
 
 export default function HomeScreen() {
@@ -17,10 +16,10 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <ThemeProvider>
         <Text h1>Headline</Text>
-        <TodoList list={mockTodos} />
         <Badge value='Hola' badgeStyle={styles.badgeContainer} />
       </ThemeProvider>
-      <Button onPress={handleHelpPress}>Kifah</Button>
+      <HomePage />
+      <Button title="This is Kifah" onPress={handleHelpPress} />
     </View>
   );
 }

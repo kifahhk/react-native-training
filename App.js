@@ -5,10 +5,9 @@ import { AppLoading } from "expo";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import GlobalState from './state';
-
-
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import useLinking from './navigation/useLinking';
+import Firebase, { FirebaseContext } from './components/firebase';
 
 const Stack = createStackNavigator();
 
@@ -45,16 +44,18 @@ export default function App(props) {
       return <AppLoading />;
   } else {
     return (
-      <GlobalState.Provider>
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
-            <Stack.Navigator>
-              <Stack.Screen name="Root" component={BottomTabNavigator} />
-            </Stack.Navigator>
-          </NavigationContainer>
-        </View>
-      </GlobalState.Provider>
+      <FirebaseContext.Provider value={new Firebase()}>
+        <GlobalState.Provider>
+          <View style={styles.container}>
+            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+            <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
+              <Stack.Navigator>
+                <Stack.Screen name="Root" component={BottomTabNavigator} />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </View>
+        </GlobalState.Provider>
+      </FirebaseContext.Provider>
     );
   }
 }

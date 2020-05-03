@@ -13,7 +13,7 @@ const TodoItem = ({ listItem }) => {
     <ListItem
       title={ listItem.title }
       titleStyle={ done ?  {
-        textDecoration: 'line-through',
+        textDecorationLine: 'line-through',
       } : { } }
       rightElement={ <CheckBox
         checked={ done }
@@ -28,6 +28,6 @@ export default TodoItem;
 
 const styles = StyleSheet.create({
   titleStyle: {
-    textDecoration: 'line-through',
+    textDecorationLine: 'line-through',
   },
 });
